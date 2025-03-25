@@ -28,27 +28,55 @@ document.addEventListener('DOMContentLoaded', function () {
     // Depoimentos - Agora em layout de grade fixa
     const depoimentoCards = document.querySelectorAll('.depoimento-card')
 
-    // Modal da Galeria
-    const galeriaItems = document.querySelectorAll('.galeria-item')
+    // Instagram Feed
+    const instagramFeed = document.getElementById('instagram-feed')
+    const instagramItems = document.querySelectorAll('.instagram-item')
     const modal = document.getElementById('galeria-modal')
     const modalImg = document.getElementById('modal-img')
     const closeModal = document.querySelector('.close-modal')
 
-    galeriaItems.forEach((item) => {
-        item.addEventListener('click', function () {
-            // Em um cenário real, aqui você usaria a URL da imagem real
-            // Como estamos usando placeholders, vamos apenas abrir o modal
-            modal.style.display = 'block'
+    // Função para carregar o feed do Instagram
+    async function loadInstagramFeed() {
+        try {
+            // Em um cenário real, você usaria a API do Instagram
+            // Como exemplo, vamos simular com cores diferentes para cada item
+            const colors = [
+                '#ffb6c1',
+                '#ffd700',
+                '#ff7f50',
+                '#87cefa',
+                '#98fb98',
+                '#dda0dd',
+                '#f0e68c',
+                '#add8e6',
+                '#ffa07a',
+            ]
 
-            // Em um cenário real:
-            // const imgSrc = this.querySelector('img').src;
-            // modalImg.src = imgSrc;
+            instagramItems.forEach((item, index) => {
+                const placeholderImg = item.querySelector('.placeholder-img')
+                // Simular imagens com cores diferentes
+                placeholderImg.style.backgroundColor =
+                    colors[index % colors.length]
 
-            // Para o placeholder, vamos usar uma cor de fundo
-            modalImg.style.backgroundColor = 'var(--accent-color)'
-            modalImg.style.height = '400px'
-        })
-    })
+                // Adicionar evento de clique para abrir o modal
+                item.addEventListener('click', function () {
+                    modal.style.display = 'block'
+                    modalImg.style.backgroundColor =
+                        colors[index % colors.length]
+                    modalImg.style.height = '400px'
+
+                    // Em um cenário real:
+                    // const imgSrc = this.querySelector('img').src;
+                    // modalImg.src = imgSrc;
+                })
+            })
+        } catch (error) {
+            console.error('Erro ao carregar o feed do Instagram:', error)
+        }
+    }
+
+    // Carregar o feed do Instagram quando a página carregar
+    loadInstagramFeed()
 
     closeModal.addEventListener('click', function () {
         modal.style.display = 'none'
@@ -64,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Animação de elementos ao scroll
     const animateOnScroll = function () {
         const elements = document.querySelectorAll(
-            '.servico-card, .sobre-text, .sobre-img, .depoimento-card, .galeria-item'
+            '.servico-card, .sobre-text, .sobre-img, .depoimento-card, .instagram-item'
         )
 
         elements.forEach((element) => {
@@ -80,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Inicialmente, definir os elementos como invisíveis
     const elementsToAnimate = document.querySelectorAll(
-        '.servico-card, .sobre-text, .sobre-img, .depoimento-card, .galeria-item'
+        '.servico-card, .sobre-text, .sobre-img, .depoimento-card, .instagram-item'
     )
     elementsToAnimate.forEach((element) => {
         element.style.opacity = '0'

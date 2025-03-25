@@ -25,63 +25,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     })
 
-    // Slider de Depoimentos
-    const depoimentosSlider = document.querySelector('.depoimentos-slider')
+    // Depoimentos - Agora em layout de grade fixa
     const depoimentoCards = document.querySelectorAll('.depoimento-card')
-    const prevBtn = document.querySelector('.prev')
-    const nextBtn = document.querySelector('.next')
-
-    let currentIndex = 0
-    let cardWidth = 0
-    let visibleCards = 3
-
-    // Função para atualizar o número de cards visíveis com base na largura da tela
-    function updateVisibleCards() {
-        // Agora mostramos apenas um card por vez em todas as resoluções
-        visibleCards = 1
-
-        // Atualiza a largura do card com base no número de cards visíveis
-        cardWidth = depoimentosSlider.clientWidth / visibleCards
-
-        // Atualiza o estilo dos cards
-        depoimentoCards.forEach((card) => {
-            card.style.flex = `0 0 ${cardWidth}px`
-        })
-
-        // Reposiciona o slider para o índice atual
-        moveSlider()
-    }
-
-    // Função para mover o slider
-    function moveSlider() {
-        const maxIndex = depoimentoCards.length - visibleCards
-
-        // Garante que o índice não ultrapasse os limites
-        if (currentIndex < 0) currentIndex = 0
-        if (currentIndex > maxIndex) currentIndex = maxIndex
-
-        // Move o slider
-        depoimentosSlider.style.transform = `translateX(-${
-            currentIndex * cardWidth
-        }px)`
-    }
-
-    // Botões de navegação do slider
-    prevBtn.addEventListener('click', function () {
-        currentIndex--
-        moveSlider()
-    })
-
-    nextBtn.addEventListener('click', function () {
-        currentIndex++
-        moveSlider()
-    })
-
-    // Atualiza o slider quando a janela é redimensionada
-    window.addEventListener('resize', updateVisibleCards)
-
-    // Inicializa o slider
-    updateVisibleCards()
 
     // Modal da Galeria
     const galeriaItems = document.querySelectorAll('.galeria-item')

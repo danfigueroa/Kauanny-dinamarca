@@ -414,24 +414,45 @@ nav ul li a:hover::after {
     }
 }
 
-/* Galeria */
-.galeria-grid {
+/* Instagram Feed */
+.instagram-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+
+.instagram-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.instagram-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 30px;
 }
 
-.galeria-item {
+.instagram-item {
     position: relative;
-    border-radius: 10px;
+    aspect-ratio: 1/1;
+    border-radius: 4px;
     overflow: hidden;
-    height: 250px;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.galeria-item .placeholder-img {
+.instagram-item .placeholder-img {
     height: 100%;
+    width: 100%;
     background-color: var(--accent-color);
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s ease;
 }
 
 .overlay {
@@ -444,17 +465,56 @@ nav ul li a:hover::after {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 15px;
     opacity: 0;
     transition: all 0.3s ease;
 }
 
-.overlay i {
-    color: var(--light-color);
-    font-size: 2rem;
+.instagram-item:hover .overlay {
+    opacity: 1;
 }
 
-.galeria-item:hover .overlay {
-    opacity: 1;
+.instagram-item:hover .placeholder-img {
+    transform: scale(1.1);
+}
+
+.overlay i {
+    color: var(--light-color);
+    font-size: 1.5rem;
+}
+
+.instagram-follow {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.btn-instagram {
+    background-color: #e1306c;
+    border-color: #e1306c;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-instagram:hover {
+    background-color: transparent;
+    color: #e1306c;
+}
+
+.btn-instagram i {
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .instagram-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .instagram-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Modal */
